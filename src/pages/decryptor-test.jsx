@@ -25,6 +25,7 @@ const DecryptorTest = () => {
       }
       return;
     } catch (error) {
+      console.log({ error });
       return <div />;
     }
   };
