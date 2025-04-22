@@ -10,48 +10,56 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const ipData = await getIP()
-      .then((res) => res)
-      .then((res) => res)
-      .catch(() => {});
+      const ipData = await getIP()
+        .then((res) => res)
+        .then((res) => res)
+        .catch(() => {});
 
-    const { myKey, randomStr, validateUsr, indifidier } = config;
+      const { myKey, randomStr, validateUsr, indifidier } = config;
 
-    const usrLog = decryptContent({
-      clientKey: randomStr,
-      sharedKey: indifidier,
-      key: myKey,
-      payload: validateUsr,
-    });
-
-    const usrExt = JSON.parse(usrLog);
-    const usrInp = {
-      username: e.target.elements["username"].value,
-      password: e.target.elements["password"].value,
-    };
-
-    if (
-      usrExt?.username === usrInp.username &&
-      usrExt?.password === usrInp.password
-    ) {
-      //   navigate("/");
-
-      const saveToSession = encryptContent({
+      const usrLog = decryptContent({
         clientKey: randomStr,
         sharedKey: indifidier,
         key: myKey,
-        payload: { ...usrInp, ipDat: ipData?.ip },
+        payload: validateUsr,
       });
-      //   console.log({ saveToSession });
 
-      sessionStorage.setItem("session", saveToSession);
-      navigate("/");
-    } else {
+      const usrExt = JSON.parse(usrLog);
+      const usrInp = {
+        username: e.target.elements["username"].value,
+        password: e.target.elements["password"].value,
+      };
+
+      if (
+        usrExt?.username === usrInp.username &&
+        usrExt?.password === usrInp.password
+      ) {
+        //   navigate("/");
+
+        const saveToSession = encryptContent({
+          clientKey: randomStr,
+          sharedKey: indifidier,
+          key: myKey,
+          payload: { ...usrInp, ipDat: ipData?.ip },
+        });
+        //   console.log({ saveToSession });
+
+        sessionStorage.setItem("session", saveToSession);
+        navigate("/");
+      } else {
+        Swal.fire({
+          //   title: "The Internet?",
+          text: "Username or Password Invalid!",
+          icon: "error",
+        });
+      }
+    } catch (error) {
       Swal.fire({
         //   title: "The Internet?",
-        text: "Username or Password Invalid!",
+        text: "Access Denied!",
         icon: "error",
       });
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { cpmLogo, decryptIco, encryptIco } from "../assets";
+import { cpmLogo, decryptIco, encryptIco, offIco } from "../assets";
 import FormConfigure from "../components/form-configure";
 import CardOption from "../components/card-option";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -10,7 +10,6 @@ const Homepage = () => {
   const { state } = useLocation();
 
   const handleSubmit = (e) => {
-    console.log({ e });
     setFormVal(e);
   };
 
@@ -23,7 +22,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <section className="py-8 flex space-y-4 flex-col items-center justify-center">
+    <section className="py-8 flex space-y-4 flex-col items-center justify-center relative">
       <div className="flex items-center space-x-4">
         <img src={cpmLogo} className="h-28" />
         <div>
@@ -54,6 +53,16 @@ const Homepage = () => {
           />
         </div>
       )}
+
+      <div
+        className="absolute top-16 right-28 w-12 h-12 hover:cursor-pointer "
+        onClick={() => {
+          sessionStorage.clear();
+          navigate("/login");
+        }}
+      >
+        <img src={offIco} />
+      </div>
     </section>
   );
 };

@@ -11,12 +11,12 @@ import Login from "./pages/login";
 import { config } from "./config";
 import { getIP } from "./helpers/getIp";
 import { decryptContent } from "./helpers/crypto";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const PrivateRouter = ({ children }) => {
   const [isNextUrl, setIsNextUrl] = useState(null);
 
-  const validateData = async () => {
+  const validateData = useCallback(async () => {
     const { myKey, randomStr, username, pw, indifidier } = config;
     const sessionData = sessionStorage?.session;
     try {
@@ -42,11 +42,11 @@ const PrivateRouter = ({ children }) => {
       // return validateData;
       setIsNextUrl(validateData);
     } catch (error) {
-      console.log({ error });
       // return false;
+      sessionStorage.clear();
       setIsNextUrl(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     validateData();
