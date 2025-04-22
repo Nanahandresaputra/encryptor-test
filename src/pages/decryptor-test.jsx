@@ -15,6 +15,7 @@ const DecryptorTest = () => {
           clientKey: state?.clientkey,
           sharedKey: state?.sharedkey,
           payload: text,
+          key: state?.project,
         });
 
         return (
@@ -42,6 +43,7 @@ const DecryptorTest = () => {
               state: {
                 sharedkey: state?.sharedkey,
                 clientkey: state?.clientkey,
+                project: state?.project,
               },
             })
           }

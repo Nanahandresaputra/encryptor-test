@@ -31,9 +31,9 @@
 // }
 
 import CryptoJS from "crypto-js";
-export function encryptContent({ payload, clientKey, sharedKey }) {
+export function encryptContent({ payload, clientKey, sharedKey, key }) {
   //   const { payload: r, clientKey: o, sharedKey: p } = t;
-  let e = clientKey + "Y3BtLnN5c3RlbXM" + sharedKey;
+  let e = clientKey + key + sharedKey;
   return (
     (e = CryptoJS.SHA512(e)),
     (e = e.toString()),
@@ -44,9 +44,9 @@ export function encryptContent({ payload, clientKey, sharedKey }) {
     }).toString()
   );
 }
-export function decryptContent({ payload, clientKey, sharedKey }) {
+export function decryptContent({ payload, clientKey, sharedKey, key }) {
   //   const { payload: r, clientKey: o, sharedKey: p } = t;
-  let e = clientKey + "Y3BtLnN5c3RlbXM" + sharedKey;
+  let e = clientKey + key + sharedKey;
   return (
     (e = CryptoJS.SHA512(e)),
     (e = e.toString()),

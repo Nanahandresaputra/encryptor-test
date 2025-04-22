@@ -46,6 +46,7 @@ const EcnryptorTest = () => {
             sharedKey: state?.sharedkey,
             clientKey: state?.clientkey,
             payload: JSON.parse(text),
+            key: state?.project,
           })
         );
       } catch (error) {
@@ -66,6 +67,7 @@ const EcnryptorTest = () => {
               state: {
                 sharedkey: state?.sharedkey,
                 clientkey: state?.clientkey,
+                project: state?.project,
               },
             })
           }

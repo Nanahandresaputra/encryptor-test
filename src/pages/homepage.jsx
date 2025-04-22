@@ -10,13 +10,14 @@ const Homepage = () => {
   const { state } = useLocation();
 
   const handleSubmit = (e) => {
+    console.log({ e });
     setFormVal(e);
   };
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (state?.sharedkey && state?.clientkey) {
+    if (state?.sharedkey && state?.clientkey && state?.project) {
       setFormVal(state);
     }
   }, []);
@@ -39,7 +40,7 @@ const Homepage = () => {
         setFormVal={setFormVal}
       />
 
-      {formVal?.clientkey && formVal?.sharedkey && (
+      {formVal?.clientkey && formVal?.sharedkey && formVal?.project && (
         <div className="w-4/12 flex items-center space-x-6">
           <CardOption
             srcImg={encryptIco}
