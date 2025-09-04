@@ -38,6 +38,22 @@ const EcnryptorTest = () => {
     }
   };
 
+  console.log({
+    encrypted: encryptContent({
+      sharedKey: state?.sharedkey,
+      clientKey: state?.clientkey,
+      payload: {
+        maps: {
+          [8]: [1],
+        },
+      },
+      key: state?.project,
+    }),
+    maps: {
+      [8]: [1],
+    },
+  });
+
   useEffect(() => {
     if (text.length > 0) {
       try {

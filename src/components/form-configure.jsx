@@ -34,6 +34,7 @@ const FormConfigure = ({ onSubmit, formVal }) => {
         <option value={config.valKeyFe}>CPM Peer Review</option>
         <option value={config.valKeyKjr}>CPM Ticketing</option>
         <option value={config.valKeyFe}>SharpXvend</option>
+        <option value={config.valKeyBpdSumut}>BPD Sumut</option>
         <option value={config.myKey}>Other</option>
       </select>
 

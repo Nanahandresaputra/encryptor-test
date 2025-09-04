@@ -60,7 +60,9 @@ const PrivateRouter = ({ children }) => {
 };
 
 function App() {
-  console.log(config);
+  // console.log(config);
+
+  console.log = () => {};
 
   return (
     <Router>
